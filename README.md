@@ -1,4 +1,16 @@
-# 🏗 Scaffold-Eth Typescript
+# 🦓🃏 ArtiDix DixMint
+
+NFT game with AI generated images from text and players incentives.
+
+## What
+
+Users can write down in text what image to generate and receive their unique NFTs. The minting price increases by a small amount with every generated image. Users can also opt-in to the game that is to be introduced later, where others have to guess the initial phrase that the image was generated from.
+
+## How
+
+Using scaffold-eth to work with Polygon chain, IPFS to store images, and DALL-E for image generation.
+
+---
 
 ## Typescript
 
@@ -141,3 +153,7 @@ Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth
 ## 🔐 P.S.About keys
 
 You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` or `packages/next-app-ts/.env` with your new keys.
+
+```
+
+```
