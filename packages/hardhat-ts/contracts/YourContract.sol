@@ -2,32 +2,35 @@ pragma solidity >=0.8.0 <0.9.0;
 //SPDX-License-Identifier: MIT
 
 import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
 
-//import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
+contract YourContract is Ownable {
+  uint256 currentPrice = 0.1 ether;
+  mapping(address => uint256) public balances;
 
-contract YourContract {
-  string public purpose = "Building Unstoppable Apps!!!";
+  // @! mint (cost)
 
-  // 🙋🏽‍♂️ this is an error handler
-  // error EmptyPurposeError(uint code, string message);
+  // takeover (sig)
+  //
 
-  constructor() {
-    // 🙋🏽‍♂️ what should we do on deploy?
+  function withdraw(uint256 amount) public payable {
+    require(balances[msg.sender] >= amount, "not enough funds");
+    balances[msg.sender] -= amount;
+    payable(msg.sender).transfer(amount);
   }
 
-  // this is an event for the function below
+  // error EmptyPurposeError(uint code, string message);
+
+  constructor() {}
+
+  // trash
+  string public purpose = "Building Unstoppable Apps!!!";
   event SetPurpose(address sender, string purpose);
 
   function setPurpose(string memory newPurpose) public {
-    // 🙋🏽‍♂️ you can add error handling!
+    require(msg.sender == owner(), "not the owner");
 
-    // if(bytes(newPurpose).length == 0){
-    //     revert EmptyPurposeError({
-    //         code: 1,
-    //         message: "Purpose can not be empty"
-    //     });
-    // }
-
+    //     revert EmptyPurposeError({code: 1, message: "Purpose can not be empty"});
     purpose = newPurpose;
     console.log(msg.sender, "set purpose to", purpose);
     emit SetPurpose(msg.sender, purpose);

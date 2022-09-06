@@ -32,9 +32,9 @@ export const getAppContractsConfig = () => {
         hardhatDeployedContractsJson
       ),
 
-      YourNFT: createConnectorForHardhatContract(
-        'YourNFT',
-        hardhatContracts.YourNFT__factory,
+      DixiNFT: createConnectorForHardhatContract(
+        'DixiNFT',
+        hardhatContracts.DixiNFT__factory,
         hardhatDeployedContractsJson
       ),
 

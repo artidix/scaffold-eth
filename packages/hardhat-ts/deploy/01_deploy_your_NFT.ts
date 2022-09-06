@@ -5,7 +5,7 @@ const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => 
   const { getNamedAccounts, deployments } = hre;
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  await deploy('YourNFT', {
+  await deploy('DixiNFT', {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
     // args: ["Hello"],
@@ -21,7 +21,7 @@ const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => 
   */
 };
 export default func;
-func.tags = ['YourNFT'];
+func.tags = ['DixiNFT'];
 
 /*
 Tenderly verification

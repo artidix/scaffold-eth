@@ -2,7 +2,7 @@ import '../helpers/hardhat-imports';
 import './helpers/chai-imports';
 
 import { expect } from 'chai';
-import { YourNFT__factory, YourNFT } from 'generated/contract-types';
+import { DixiNFT__factory, DixiNFT } from 'generated/contract-types';
 import hre from 'hardhat';
 import { getHardhatSigners } from 'tasks/functions/accounts';
 
@@ -11,13 +11,13 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
 
   // console.log("hre:",Object.keys(hre)) // <-- you can access the hardhat runtime env here
 
-  describe('YourNFT', function () {
-    let yourNFTContract: YourNFT;
+  describe('DixiNFT', function () {
+    let dixiNFTContract: DixiNFT;
 
     before(async () => {
       const { deployer } = await getHardhatSigners(hre);
-      const factory = new YourNFT__factory(deployer);
-      yourNFTContract = await factory.deploy();
+      const factory = new DixiNFT__factory(deployer);
+      dixiNFTContract = await factory.deploy();
     });
 
     beforeEach(async () => {
@@ -30,11 +30,11 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
 
         console.log('\t', ' 🧑‍🏫 Tester Address: ', user1.address);
 
-        const startingBalance = await yourNFTContract.balanceOf(user1.address);
+        const startingBalance = await dixiNFTContract.balanceOf(user1.address);
         console.log('\t', ' ⚖️ Starting balance: ', startingBalance.toNumber());
 
         console.log('\t', ' 🔨 Minting...');
-        const mintResult = await yourNFTContract.mintItem(user1.address, 'QmfVMAmNM1kDEBYrC2TPzQDoCRFH6F5tE1e9Mr4FkkR5Xr');
+        const mintResult = await dixiNFTContract.mintItem(user1.address, 'QmfVMAmNM1kDEBYrC2TPzQDoCRFH6F5tE1e9Mr4FkkR5Xr');
         console.log('\t', ' 🏷  mint tx: ', mintResult.hash);
 
         console.log('\t', ' ⏳ Waiting for confirmation...');
@@ -42,7 +42,7 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
         expect(txResult.status).to.equal(1);
 
         console.log('\t', ' 🔎 Checking new balance: ', startingBalance.toNumber());
-        expect(await yourNFTContract.balanceOf(user1.address)).to.equal(startingBalance.add(1));
+        expect(await dixiNFTContract.balanceOf(user1.address)).to.equal(startingBalance.add(1));
       });
     });
   });
