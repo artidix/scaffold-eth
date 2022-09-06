@@ -1,6 +1,8 @@
-# 🦓🃏 ArtiDix DixMint
+# 🦓 ArtiDix 🃏 DixiMint
 
 NFT game with AI generated images from text and players incentives.
+
+![image](./packages/vite-app-ts/public/artidix/artidix_x33.png)
 
 ## What
 
@@ -10,150 +12,48 @@ Users can write down in text what image to generate and receive their unique NFT
 
 Using scaffold-eth to work with Polygon chain, IPFS to store images, and DALL-E for image generation.
 
----
+![image](<./packages/vite-app-ts/public/artidix/download%20(11).png>)
 
-## Typescript
+## Plans to develop:
 
-This is the typescript repo of scaffold-eth and it uses `hardhat` and `vite` to run scaffold-eth-typescript. There is also a nextjs version. The directories that you'll use are:
+### Front
 
-```bash
-packages/vite-app-ts/
-packages/hardhat-ts/
-packages/next-app-ts/
-```
+- Welcoming page & game intro
+- Transact open NFT Mint request
+- Share challenge
+- Game invitations - see and try guess
+- Winnings collecting?
 
-## Quick Start
+### Smart contracts
 
-### Commands to run the app
+- Updateable, Ownable game logic contract
+- Open mint request
+  - Store initial phrase hash
+- Close mint request
+- Increasing price
+- Switch NFT to Game more by owner
+- Win/Lose funds distribution
+- Win/Lose NFT
+- Phrase validity control mechanism (DAO?)
 
-Running the app
+### API
 
-1. install your dependencies, `open a new command prompt`
+- Validate open generation request hash on chain
+- Enqueue generation requests
 
-   ```bash
-   yarn install
-   ```
+### AI microservice
 
-2. start a hardhat node
+- Pick requests from incoming queue
+- Generate image
+- Image upload to IPFS
+- Put IPFS hash to processed queue
+- Close NFT Mint request
+- Post-minting user notifications?
 
-   ```bash
-   yarn chain
-   ```
+## Open questions !?
 
-3. run the app, `open a new command prompt`
+- AI Hardware (where to get GPU)
+- User notifications after minting completed
+- Phrase validity (anti-cheat) control (Centralized manual->ai vs. DAO vs. Hybrid)
 
-   ```bash
-   # build hardhat & external contracts types
-   yarn contracts:build
-   # deploy your hardhat contracts
-   yarn deploy
-   # start the app (vite)
-   yarn start
-   ```
-
-4. If you'd like to run the nextjs app, `open a new command prompt`
-
-   ```bash
-   # start nextjs app
-   yarn start:nextjs
-
-   ```
-
-5. other commands
-
-   ```bash
-   # rebuild all contracts, incase of inconsistent state
-   yarn contracts:rebuild
-   # run hardhat commands for the workspace, or see all tasks
-   yarn hardhat 'xxx'
-   # get eth for testing locally
-   yarn hardhat faucet xxx
-   # run any subgraph commands for the workspace
-   yarn subgraph 'xxx'
-   ```
-
-   Other folders
-
-   ```bash
-   # for subgraph
-   packages/advanced/subgraph/
-   packages/advanced/services/
-   ```
-
-### Environment Variables
-
-Vite and NextJs app folders have `.env` files. To create local variables that overrride these, create a file called `.env.local`, or `.env.development.local` or `.env.production.local` and put your overrides in there.
-
-You can set your `TARGET_NETWORK` with them.
-
-## Overview
-
-Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity using a frontend that adapts to your smart contract:
-
-![image](https://user-images.githubusercontent.com/2653167/124158108-c14ca380-da56-11eb-967e-69cde37ca8eb.png)
-
-- 🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat-ts/contracts`
-- 📝 Edit your frontend `MainPage.tsx` in `packages/vite-app-ts/src`
-- 💼 Edit your deployment scripts in `packages/hardhat-ts/deploy`
-- 📱 Open http://localhost:3000 to see the app
-- 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks. Run `yarn hardhat taskname` to run the task.
-
-<br/><br/><br/>
-
----
-
-# Guides
-
-## Documentation
-
-- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks) for example of how to use hooks
-
-## 🏃💨 Speedrun Ethereum
-
-Register as a builder [here](https://speedrunethereum.com) and start on some of the challenges and build a portfolio.
-
-> 🏁 Make sure to click on the typescript tab!
-
-<br/><br/><br/>
-
----
-
-# More Information!
-
-## 📚 Documentation
-
-Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
-
-Eth-hooks documentation is [here](https://scaffold-eth.github.io/eth-hooks/). Learn how to use the contexts here.
-
-## 💬 Support Chat
-
-Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA) to ask questions and find others building with 🏗 scaffold-eth!
-
-## 🛠 Buidl
-
-Check out
-
-- [Typescript challenges](https://github.com/scaffold-eth/scaffold-eth-typescript-challenges)
-- [Typescript examples](https://github.com/scaffold-eth/scaffold-eth-typescript-examples)
-- [Vanilla JS active branches](https://github.com/scaffold-eth/scaffold-eth/branches/active)
-- Join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
-- [Follow the full Ethereum Speed Run](https://medium.com/@austin_48503/%EF%B8%8Fethereum-dev-speed-run-bd72bcba6a4c)
-
-## 🔭 Learning Solidity
-
-Read the docs: https://docs.soliditylang.org
-
-Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
-
-### 🙏🏽 Support us!
-
-Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth) too!
-
-## 🔐 P.S.About keys
-
-You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` or `packages/next-app-ts/.env` with your new keys.
-
-```
-
-```
+![image](./packages/vite-app-ts/public/artidix/artidix_x54.png)
