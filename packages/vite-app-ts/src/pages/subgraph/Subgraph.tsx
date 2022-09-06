@@ -50,7 +50,7 @@ import { FC } from 'react';
 //   const ethersAppContext = useEthersAppContext();
 //   const [gasPrice] = useGasPrice(ethersAppContext.chainId, 'fast');
 //   const tx = transactor(ethComponentsSettings, ethersAppContext?.signer, gasPrice);
-//   const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
+//   const artiDix = useAppContracts('ArtiDix', ethersAppContext.chainId);
 
 //   const EXAMPLE_GQL = `
 //     {
@@ -192,7 +192,7 @@ import { FC } from 'react';
 //             onClick={(): void => {
 //               console.log('newPurpose', newPurpose);
 //               /* look how you call setPurpose on your contract: */
-//               void tx?.(yourContract?.setPurpose(newPurpose));
+//               void tx?.(artiDix?.setPurpose(newPurpose));
 //             }}>
 //             Set Purpose
 //           </Button>

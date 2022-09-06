@@ -83,20 +83,15 @@ export const MainPage: FC = () => {
   // -----------------------------
 
   // init contracts
-  const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
+  const artiDix = useAppContracts('ArtiDix', ethersAppContext.chainId);
   const dixiNFT = useAppContracts('DixiNFT', ethersAppContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const [purpose, update] = useContractReader(
-    yourContract,
-    yourContract?.purpose,
-    [],
-    yourContract?.filters.SetPurpose()
-  );
+  const [purpose, update] = useContractReader(artiDix, artiDix?.purpose, [], artiDix?.filters.SetPurpose());
 
   // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
+  const [setPurposeEvents] = useEventListener(artiDix, 'SetPurpose', 0);
 
   // -----------------------------
   // .... 🎇 End of examples
@@ -121,11 +116,11 @@ export const MainPage: FC = () => {
   // This is the list of tabs and their contents
   const pageList: TContractPageList = {
     mainPage: {
-      name: 'YourContract',
+      name: 'ArtiDix',
       content: (
         <GenericContract
-          contractName="YourContract"
-          contract={yourContract}
+          contractName="ArtiDix"
+          contract={artiDix}
           mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
           blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
         />

@@ -26,9 +26,9 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
       // --------------------------------------------------
-      YourContract: createConnectorForHardhatContract(
-        'YourContract',
-        hardhatContracts.YourContract__factory,
+      ArtiDix: createConnectorForHardhatContract(
+        'ArtiDix',
+        hardhatContracts.ArtiDix__factory,
         hardhatDeployedContractsJson
       ),
 
@@ -46,16 +46,16 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
       // --------------------------------------------------
-      // YourContract: createConnectorForExternalAbi(
-      //   'YourContract',
+      // ArtiDix: createConnectorForExternalAbi(
+      //   'ArtiDix',
       //   {
       //     [TARGET_NETWORK_INFO.chainId]: {
       //       address: 'xxx',
       //       chainId: TARGET_NETWORK_INFO.chainId,
       //     },
       //   },
-      //   hardhatContracts.YourContract__factory.abi,
-      //   hardhatContracts.YourContract__factory.connect
+      //   hardhatContracts.ArtiDix__factory.abi,
+      //   hardhatContracts.ArtiDix__factory.connect
       // ),
     } as const;
 

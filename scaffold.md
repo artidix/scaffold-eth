@@ -80,7 +80,7 @@ Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity 
 
 ![image](https://user-images.githubusercontent.com/2653167/124158108-c14ca380-da56-11eb-967e-69cde37ca8eb.png)
 
-- 🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat-ts/contracts`
+- 🔏 Edit your smart contract `ArtiDix.sol` in `packages/hardhat-ts/contracts`
 - 📝 Edit your frontend `MainPage.tsx` in `packages/vite-app-ts/src`
 - 💼 Edit your deployment scripts in `packages/hardhat-ts/deploy`
 - 📱 Open http://localhost:3000 to see the app
@@ -132,7 +132,7 @@ Check out
 
 Read the docs: https://docs.soliditylang.org
 
-Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
+Go through each topic from [solidity by example](https://solidity-by-example.org) editing `ArtiDix.sol` in **🏗 scaffold-eth**
 
 ### 🙏🏽 Support us!
 
