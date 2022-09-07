@@ -18,42 +18,44 @@ Using scaffold-eth to work with Polygon chain, IPFS to store images, and DALL-E 
 
 ### Front
 
-- Welcoming page & game intro
-- Transact open NFT Mint request
-- Share challenge
-- Game invitations - see and try guess
-- Winnings collecting?
+- ☐ Welcoming page & game intro
+- ☐ Transact open NFT Mint request
+- ☐ Share challenge
+- ☐ Game invitations - see and try guess
+- ☐ Winnings collecting?
 
 ### Smart contracts
 
-- Updateable, Ownable game logic contract
-- Open mint request
-  - Store initial phrase hash
-- Close mint request
-- Increasing price
-- Switch NFT to Game more by owner
-- Win/Lose funds distribution
-- Win/Lose NFT
-- Phrase validity control mechanism (DAO?)
+- ☐ Updateable, Ownable game logic contract
+- ☐ Open mint request
+  - ☐ Store initial phrase hash
+- ☐ Close mint request
+- ☐ Increasing price
+- ☐ Switch NFT to Game more by owner
+- ☐ Win/Lose funds distribution
+- ☐ Win/Lose NFT
+- ☐ Phrase validity control mechanism (DAO?)
 
 ### API
 
-- Validate open generation request hash on chain
-- Enqueue generation requests
+- ☐ Validate open generation request hash on chain
+- ☐ Enqueue generation requests
 
 ### AI microservice
 
-- Pick requests from incoming queue
-- Generate image
-- Image upload to IPFS
-- Put IPFS hash to processed queue
-- Close NFT Mint request
-- Post-minting user notifications?
+- ☐ Pick requests from incoming queue
+- ☐ Generate image
+- ☐ Image upload to IPFS
+- ☐ Put IPFS hash to processed queue
+- ☐ Close NFT Mint request
+- ☐ Post-minting user notifications?
 
 ## Open questions !?
 
-- AI Hardware (where to get GPU)
-- User notifications after minting completed
-- Phrase validity (anti-cheat) control (Centralized manual->ai vs. DAO vs. Hybrid)
+- ✅ AI Hardware (where to get GPU)
+- ❔ Price strategy
+  - ☑️ Initial bulletproof model
+- ❔ User notifications after minting completed
+- ❔ Phrase validity (anti-cheat) control (Centralized manual->ai vs. DAO vs. Hybrid)
 
 ![image](./packages/vite-app-ts/public/artidix/artidix_x54.png)
