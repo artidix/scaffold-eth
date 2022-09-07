@@ -109,5 +109,8 @@
   },
   "volta": {
     "node": "16.15.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.7.3"
   }
 }
