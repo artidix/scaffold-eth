@@ -16,6 +16,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
 
+  mapping(uint256 => bytes32) public _inputHashes; // private
+
   constructor() ERC721("DixiNFT", "DIXI") {}
 
   function _baseURI() internal view virtual override returns (string memory) {
@@ -43,17 +45,15 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return super.tokenURI(tokenId);
   }
 
-  function mintItem(address to) public returns (uint256) {
+  function mintItem(address to, bytes32 inputHash) public returns (uint256) {
     _tokenIds.increment();
-
     uint256 id = _tokenIds.current();
-
+    _inputHashes[id] = inputHash;
     return id;
   }
 
   function mintFinalize(uint256 id, string memory tokenURI) public returns (uint256) {
-    uint256 id = _tokenIds.current();
-
+    // @! check ownership
     _mint(to, id);
     _setTokenURI(id, tokenURI);
 
