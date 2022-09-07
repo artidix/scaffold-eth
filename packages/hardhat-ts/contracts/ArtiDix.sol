@@ -7,7 +7,6 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
 
 contract ArtiDix is OwnableUpgradeable {
-  uint256 currentPrice = 0.1 ether;
   mapping(address => uint256) public balances;
 
   // @! mint (cost)
