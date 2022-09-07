@@ -17,6 +17,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   Counters.Counter private _tokenIds;
 
   mapping(uint256 => bytes32) public _inputHashes; // private
+  mapping(uint256 => bool) public _gameParticipation;
 
   constructor() ERC721("DixiNFT", "DIXI") {}
 
@@ -61,11 +62,22 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return id;
   }
 
+  function enterTheGame(uint256 id) {
+    require(_owners[id] == msg.sender, "Only NFT owner can enter the Game");
+    _gameParticipation[id] = true;
+  }
+
+  function exitGame(uint256 id) {
+    require(_owners[id] == msg.sender, "Only owner can take his NFT off the Game");
+    _gameParticipation[id] = false;
+  }
+
   function takeOver(
     bytes sig,
     uint256 id,
     bytes32 hash
   ) {
+    require(_gameParticipation[id], "This NFT owner decided not to participate in the Game");
     // @! check sig and transfer ownership
   }
 }
