@@ -20,6 +20,10 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   constructor() ERC721("DixiNFT", "DIXI") {}
 
+  function transferOwnership(address owner) onlyOwner {
+    transferOwnership(owner);
+  }
+
   function _baseURI() internal view virtual override returns (string memory) {
     return "https://ipfs.io/ipfs/";
   }
