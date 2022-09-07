@@ -41,7 +41,6 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   }
 
   function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
-    // DO SOMETHING
     return super.tokenURI(tokenId);
   }
 
@@ -52,11 +51,17 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return id;
   }
 
-  function mintFinalize(uint256 id, string memory tokenURI) public returns (uint256) {
-    // @! check ownership
+  function mintFinalize(uint256 id, string memory tokenURI) public onlyOwner returns (uint256) {
     _mint(to, id);
     _setTokenURI(id, tokenURI);
-
     return id;
+  }
+
+  function takeOver(
+    bytes sig,
+    uint256 id,
+    bytes32 hash
+  ) {
+    // @! check sig and transfer ownership
   }
 }
