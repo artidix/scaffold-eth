@@ -50,6 +50,14 @@ Using scaffold-eth to work with Polygon chain, IPFS to store images, and DALL-E 
 - ☐ Close NFT Mint request
 - ☐ Post-minting user notifications?
 
+### Infrastructure
+
+- ☐ Setup ML development environment
+- ☐ Setup Front Static Site
+- ☐ Setup node api with mongodb atlas or mariadb
+- ☐ Setup queue
+- ☐ IPFS provider
+
 ## Open questions !?
 
 - ✅ AI Hardware (where to get GPU)
