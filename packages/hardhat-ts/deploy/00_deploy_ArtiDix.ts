@@ -15,7 +15,7 @@ const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => 
   /*
     // Getting a previously deployed contract
     const ArtiDix = await ethers.getContract("ArtiDix", deployer);
-    await YourContract.setPurpose("Hello");
+    await ArtiDix.setPurpose("Hello");
     
     //const artiDix = await ethers.getContractAt('ArtiDix', "0xaAC799eC2d00C013f1F11c37E654e59B0429DF6A") //<-- if you want to instantiate a version of a contract at a specific address!
   */
