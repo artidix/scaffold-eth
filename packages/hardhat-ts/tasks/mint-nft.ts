@@ -66,7 +66,7 @@ task('mint', 'Mints NFTs to the specified address')
     const uploaded = await ipfs.add(JSON.stringify(buffalo));
 
     console.log('Minting buffalo with IPFS hash (' + uploaded.path + ')');
-    await dixiNFTContract.mintItem(toAddress, uploaded.path, {
+    await dixiNFTContract.mintItem(toAddress, uploaded.path, true, {
       gasLimit: 400000,
     });
 
@@ -96,7 +96,7 @@ task('mint', 'Mints NFTs to the specified address')
     const uploadedzebra = await ipfs.add(JSON.stringify(zebra));
 
     console.log('Minting zebra with IPFS hash (' + uploadedzebra.path + ')');
-    await dixiNFTContract.mintItem(toAddress, uploadedzebra.path, {
+    await dixiNFTContract.mintItem(toAddress, uploadedzebra.path, true, {
       gasLimit: 400000,
     });
 
@@ -126,7 +126,7 @@ task('mint', 'Mints NFTs to the specified address')
     const uploadedrhino = await ipfs.add(JSON.stringify(rhino));
 
     console.log('Minting rhino with IPFS hash (' + uploadedrhino.path + ')');
-    await dixiNFTContract.mintItem(toAddress, uploadedrhino.path, {
+    await dixiNFTContract.mintItem(toAddress, uploadedrhino.path, true, {
       gasLimit: 400000,
     });
 
@@ -156,7 +156,7 @@ task('mint', 'Mints NFTs to the specified address')
     const uploadedfish = await ipfs.add(JSON.stringify(fish));
 
     console.log('Minting fish with IPFS hash (' + uploadedfish.path + ')');
-    await dixiNFTContract.mintItem(toAddress, uploadedfish.path, {
+    await dixiNFTContract.mintItem(toAddress, uploadedfish.path, true, {
       gasLimit: 400000,
     });
 
