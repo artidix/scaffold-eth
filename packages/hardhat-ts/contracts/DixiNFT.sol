@@ -55,13 +55,18 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return super.tokenURI(tokenId);
   }
 
-  function mintItem(address to, bytes32 inputHash) public returns (uint256) {
+  function mintItem(
+    address to,
+    bytes32 inputHash,
+    bool enterGame
+  ) public payable returns (uint256) {
     require(msg.value >= _currentPrice, "Please check current price, it's already higher!");
 
     _tokenIds.increment();
     uint256 id = _tokenIds.current();
     _inputHashes[id] = inputHash;
     _minters[id] = to;
+    _gameParticipation[id] = enterGame;
     return id;
   }
 
@@ -85,13 +90,13 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _gameParticipation[id] = false;
   }
 
-  // @! stake fight
+  function tryGuess(uint256 id, string memory phrase) public payable returns (bool) {
+    // @! check stake
+    // @!
+  }
 
-  function takeOver(
-    bytes memory sig,
-    uint256 id,
-    bytes32 hash
-  ) public {
+  function takeOver(bytes memory sig, uint256 id) public {
+    require(false, "Signature incorrect");
     require(_gameParticipation[id], "This NFT owner decided not to participate in the Game");
     // @! check sig and transfer ownership
 

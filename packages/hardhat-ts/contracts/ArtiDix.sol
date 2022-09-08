@@ -9,11 +9,6 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 contract ArtiDix is OwnableUpgradeable {
   mapping(address => uint256) public balances;
 
-  // @! mint (cost)
-
-  // takeover (sig)
-  //
-
   function withdraw(uint256 amount) public payable {
     require(balances[msg.sender] >= amount, "not enough funds");
     balances[msg.sender] -= amount;
