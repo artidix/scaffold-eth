@@ -6,9 +6,11 @@ import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { MainPageFooter, MainPageHeader, createTabsAndRoutes, TContractPageList } from '../components/main';
+
+import { AdminPage } from './AdminPage';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
@@ -170,6 +172,9 @@ export const MainPage: FC = () => {
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
           </Route>
           */}
+          <Route path="/admin">
+            <AdminPage />
+          </Route>
         </Switch>
       </BrowserRouter>
 
