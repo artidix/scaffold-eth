@@ -4,6 +4,7 @@ import './helpers/chai-imports';
 import { expect } from 'chai';
 import { DixiNFT__factory, DixiNFT } from 'generated/contract-types';
 import hre from 'hardhat';
+import { SignerWithAddress } from 'hardhat-deploy-ethers/signers';
 import { getHardhatSigners } from 'tasks/functions/accounts';
 
 describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
@@ -13,9 +14,11 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
 
   describe('DixiNFT', function () {
     let dixiNFTContract: DixiNFT;
+    let owner: SignerWithAddress;
 
     before(async () => {
       const { deployer } = await getHardhatSigners(hre);
+      owner = deployer;
       const factory = new DixiNFT__factory(deployer);
       dixiNFTContract = await factory.deploy();
     });
@@ -34,8 +37,13 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
         console.log('\t', ' ⚖️ Starting balance: ', startingBalance.toNumber());
 
         console.log('\t', ' 🔨 Minting...');
-        const mintResult = await dixiNFTContract.mintItem(user1.address, 'QmfVMAmNM1kDEBYrC2TPzQDoCRFH6F5tE1e9Mr4FkkR5Xr', true);
+        const someHash = 'QmfVMAmNM1kDEBYrC2TPzQDoCRFH6F5tE1e9Mr4FkkR5Xr';
+        const mintResult = await dixiNFTContract.mintItem(user1.address, someHash, true);
         console.log('\t', ' 🏷  mint tx: ', mintResult.hash);
+
+        // @! impersonate as owner and finalize minting
+        const ownerContract = dixiNFTContract.connect(owner);
+        console.log(ownerContract.address);
 
         console.log('\t', ' ⏳ Waiting for confirmation...');
         const txResult = await mintResult.wait(1);

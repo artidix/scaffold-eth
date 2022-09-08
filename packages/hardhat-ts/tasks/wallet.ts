@@ -94,7 +94,7 @@ task('send', 'Send ETH')
 
       if (taskArgs.data != null) {
         txRequest.data = taskArgs.data;
-        debugLog(`Adding data to payload: ${txRequest.data}`);
+        debugLog(`Adding data to payload: {txRequest.data}`);
       }
       debugLog(`${(txRequest.gasPrice as any) / 1000000000} gwei`);
       debugLog(JSON.stringify(txRequest, null, 2));
