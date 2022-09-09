@@ -6,11 +6,9 @@ import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 import { MainPageFooter, MainPageHeader, createTabsAndRoutes, TContractPageList } from '../components/main';
-
-import { AdminPage } from './AdminPage';
 
 import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
@@ -34,10 +32,6 @@ import {
  * See ../common/src/config/web3Modal.config.ts to configure the web3 modal
  * ******************************** */
 
-/**
- * The main component
- * @returns
- */
 export const MainPage: FC = () => {
   const notificationHolder = useCreateAntNotificationHolder();
   // see useLoadProviders.ts for everything to do with loading the right providers
@@ -53,9 +47,7 @@ export const MainPage: FC = () => {
 
   useBurnerFallback(scaffoldAppProviders, BURNER_FALLBACK_ENABLED);
 
-  // 🛻 load contracts
   useLoadAppContracts();
-  // 🏭 connect to contracts for mainnet network & signer
   const [mainnetAdaptor] = useEthersAdaptorFromProviderOrSigners(MAINNET_PROVIDER);
   useConnectAppContracts(mainnetAdaptor);
   // 🏭 connec to  contracts for current network & signer
@@ -64,7 +56,6 @@ export const MainPage: FC = () => {
   // 🚦 disable this hook to stop console logs
   useScaffoldHooksExamples(scaffoldAppProviders);
 
-  // init contracts
   const artiDix = useAppContracts('ArtiDix', ethersAppContext.chainId);
   const dixiNFT = useAppContracts('DixiNFT', ethersAppContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
@@ -92,10 +83,6 @@ export const MainPage: FC = () => {
     setRoute(window.location.pathname);
   }, [setRoute]);
 
-  // -----------------------------
-  // 📃 App Page List
-  // -----------------------------
-  // This is the list of tabs and their contents
   const pageList: TContractPageList = {
     mainPage: {
       name: 'ArtiDix',
@@ -137,7 +124,6 @@ export const MainPage: FC = () => {
   return (
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
-      {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
         {tabMenu}
         <Switch>
@@ -148,9 +134,6 @@ export const MainPage: FC = () => {
             <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
           </Route>
           */}
-          <Route path="/admin">
-            <AdminPage />
-          </Route>
         </Switch>
       </BrowserRouter>
 
