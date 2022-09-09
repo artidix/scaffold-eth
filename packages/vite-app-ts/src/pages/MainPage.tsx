@@ -85,17 +85,20 @@ export const MainPage: FC = () => {
 
   const pageList: TContractPageList = {
     mainPage: {
-      name: 'ArtiDix',
-      content: (
-        <GenericContract
-          contractName="ArtiDix"
-          contract={artiDix}
-          mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
-        />
-      ),
+      name: 'hz',
+      content: <div>123</div>,
     },
     pages: [
+      {
+        name: 'ArtiDix',
+        content: (
+          <GenericContract
+            contractName="ArtiDix"
+            contract={artiDix}
+            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}></GenericContract>
+        ),
+      },
       {
         name: 'DixiNFT',
         content: (
@@ -113,13 +116,14 @@ export const MainPage: FC = () => {
             contractName="Dai"
             contract={mainnetDai}
             mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
-          />
+            blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}></GenericContract>
         ),
       },
     ],
   };
   const { routeContent: tabContents, tabMenu } = createTabsAndRoutes(pageList, route, setRoute);
+
+  console.log(``);
 
   return (
     <div className="App">
