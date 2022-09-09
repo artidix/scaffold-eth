@@ -2,3 +2,4 @@
 // code is in the component file
 
 // export const Subgraph = lazier(() => import('./subgraph/Subgraph'), 'Subgraph');
+export const hz = null;
