@@ -12,6 +12,7 @@
   "scripts": {
     "contracts:hardhat": "yarn shx rm -rf './src/generated/contracts-types' && yarn shx cp -r '../hardhat-ts/generated/contract-types' './src/generated'",
     "contracts:external": "yarn shx rm -rf './src/generated/external-contracts' && yarn shx cp -r './scripts/eth-sdk-config.ts.bak' './src/generated/eth-sdk.config.ts' && yarn eth-sdk -p ./src/generated",
+    "contracts:outsideapp": "yarn shx rm -rf '../../../diximint/generated' && yarn shx cp -r '../hardhat-ts/generated/contract-types' '../../../diximint/generated'",
     "watch": "tsc -w --noEmit",
     "clean": "shx rm -rf ./lib",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",

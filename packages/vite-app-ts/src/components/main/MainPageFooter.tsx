@@ -12,7 +12,7 @@ import { FAUCET_ENABLED } from '~~/config/app.config';
 export interface IMainPageFooterProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
-  children?: React.ReactNode;
+  items?: React.ReactNode;
 }
 
 /**

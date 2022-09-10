@@ -22,7 +22,7 @@ import { FAUCET_ENABLED } from '~~/config/app.config';
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
   price: number;
-  children?: ReactNode;
+  items?: ReactNode;
 }
 
 /**
@@ -64,7 +64,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
           style={{ cursor: 'pointer' }}
         />
       </div>
-      {props.children}
+      {props.items}
     </>
   );
 
@@ -111,7 +111,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
         gasPrice={gasPrice}
         faucetEnabled={FAUCET_ENABLED}
       />
-      {props.children}
+      {props.items}
     </div>
   );
 

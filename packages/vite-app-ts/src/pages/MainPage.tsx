@@ -123,7 +123,7 @@ export const MainPage: FC = () => {
   };
   const { routeContent: tabContents, tabMenu } = createTabsAndRoutes(pageList, route, setRoute);
 
-  console.log(``);
+  // console.log(``);
 
   return (
     <div className="App">
