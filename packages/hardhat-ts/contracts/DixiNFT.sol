@@ -10,7 +10,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./lib/Verify.sol";
 
 //learn more: https://docs.openzeppelin.com/contracts/3.x/erc721
-
 // GET LISTED ON OPENSEA: https://testnets.opensea.io/get-listed/step-two
 
 contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
@@ -56,6 +55,10 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return super.tokenURI(tokenId);
   }
 
+  function getCurrentPrice() public returns (uint256) {
+    return _currentPrice;
+  }
+
   function mintItem(
     address to,
     bytes32 inputHash,
@@ -71,13 +74,13 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return id;
   }
 
-  function mintFinalize(uint256 id, string memory tokenURI) public onlyOwner returns (uint256) {
+  function mintFinalize(uint256 id, string memory ipfsTokenUri) public onlyOwner returns (uint256) {
     // @! change onlyOwner to special sig
 
-    _currentPrice = _currentPrice + _currentPrice / 100;
+    _currentPrice = _currentPrice + _currentPrice / 200;
     address to = _minters[id];
     _mint(to, id);
-    _setTokenURI(id, tokenURI);
+    _setTokenURI(id, ipfsTokenUri);
     return id;
   }
 
@@ -96,9 +99,18 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     // @!
   }
 
-  function takeOver(bytes memory sig, uint256 id) public {
-    require(false, "Signature incorrect");
+  function takeOver(
+    uint256 id,
+    uint8 v,
+    bytes32 r,
+    bytes32 s
+  ) public {
     require(_gameParticipation[id], "This NFT owner decided not to participate in the Game");
+
+    bytes memory message = abi.encodePacked(id, msg.sender);
+    address signer = Verify.verifyBytes(message, v, r, s);
+
+    require(signer == owner(), "Signature incorrect. Did you actually win to take over this NFT?");
     // @! check sig and transfer ownership
 
     // @! give new generation ticket
