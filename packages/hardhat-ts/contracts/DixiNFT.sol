@@ -19,6 +19,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   mapping(uint256 => bytes32) public _inputHashes; // private
   mapping(uint256 => address) public _minters;
+  mapping(uint256 => address) private _owners;
   mapping(uint256 => bool) public _gameParticipation;
 
   constructor() ERC721("DixiNFT", "DIXI") {}
@@ -111,7 +112,11 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     address signer = verifyBytes(message, v, r, s);
 
     require(signer == owner(), "Signature incorrect. Did you actually win to take over this NFT?");
-    // @! transfer ownership
+
+    approve(msg.sender, id);
+
+    // @! transfer token from proper owner's address
+    transferFrom(_owners[id], msg.sender, id);
 
     // @! give new generation ticket
   }
