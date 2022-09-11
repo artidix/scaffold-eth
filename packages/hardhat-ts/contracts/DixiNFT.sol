@@ -108,10 +108,10 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     require(_gameParticipation[id], "This NFT owner decided not to participate in the Game");
 
     bytes memory message = abi.encodePacked(id, msg.sender);
-    address signer = Verify.verifyBytes(message, v, r, s);
+    address signer = verifyBytes(message, v, r, s);
 
     require(signer == owner(), "Signature incorrect. Did you actually win to take over this NFT?");
-    // @! check sig and transfer ownership
+    // @! transfer ownership
 
     // @! give new generation ticket
   }
