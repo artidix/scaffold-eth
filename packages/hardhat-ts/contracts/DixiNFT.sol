@@ -20,6 +20,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   mapping(uint256 => bytes32) public _inputHashes; // private
   mapping(uint256 => address) public _minters;
   mapping(uint256 => address) private _owners;
+  mapping(address => uint256) private _tickets;
   mapping(uint256 => bool) public _gameParticipation;
 
   constructor() ERC721("DixiNFT", "DIXI") {}
@@ -56,7 +57,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return super.tokenURI(tokenId);
   }
 
-  function getCurrentPrice() public returns (uint256) {
+  function getCurrentPrice() public view returns (uint256) {
     return _currentPrice;
   }
 
@@ -76,7 +77,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   }
 
   function mintFinalize(uint256 id, string memory ipfsTokenUri) public onlyOwner returns (uint256) {
-    // @! change onlyOwner to special sig
+    // @! change onlyOwner to sig for daemon env
 
     _currentPrice = _currentPrice + _currentPrice / 200;
     address to = _minters[id];
@@ -97,7 +98,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   function tryGuess(uint256 id, string memory phrase) public payable returns (bool) {
     // @! check stake
-    // @!
+    // what is stake amount?
+    // initially 10% of value but every attempt is 1% more expensive?
   }
 
   function takeOver(
@@ -113,11 +115,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     require(signer == owner(), "Signature incorrect. Did you actually win to take over this NFT?");
 
-    approve(msg.sender, id);
-
-    // @! transfer token from proper owner's address
-    transferFrom(_owners[id], msg.sender, id);
-
-    // @! give new generation ticket
+    transferFrom(ERC721.ownerOf(id), msg.sender, id);
+    _tickets[msg.sender] = _tickets[msg.sender]++;
   }
 }
