@@ -22,6 +22,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   mapping(uint256 => address) private _owners;
   mapping(address => uint256) private _tickets;
   mapping(uint256 => bool) public _gameParticipation;
+  mapping(uint256 => uint256) _attemptPrices;
 
   constructor() ERC721("DixiNFT", "DIXI") {}
 
@@ -79,10 +80,11 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   function mintFinalize(uint256 id, string memory ipfsTokenUri) public onlyOwner returns (uint256) {
     // @! change onlyOwner to sig for daemon env
 
-    _currentPrice = _currentPrice + _currentPrice / 200;
-    address to = _minters[id];
-    _mint(to, id);
+    uint256 prevPrice = _currentPrice;
+    _currentPrice = _currentPrice + _currentPrice / 1000; // 0.1% increase
+    _mint(_minters[id], id);
     _setTokenURI(id, ipfsTokenUri);
+    _attemptPrices[id] = prevPrice;
     return id;
   }
 
@@ -101,6 +103,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     // what is stake amount?
     // initially 10% of value but every attempt is 1% more expensive?
   }
+
+  // @! on wrong guess, stake should transfer to NFT holder
 
   function takeOver(
     uint256 id,
