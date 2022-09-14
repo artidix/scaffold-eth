@@ -15,7 +15,7 @@ import "./lib/Verify.sol";
 contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
-  uint256 _currentPrice = 0.01 ether;
+  uint256 _currentPrice;
 
   mapping(uint256 => bytes32) public _inputHashes; // private
   mapping(uint256 => address) public _minters;
@@ -23,11 +23,15 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   mapping(address => uint256) private _tickets;
   mapping(uint256 => bool) public _gameParticipation;
   mapping(uint256 => uint256) _attemptPrices;
+  mapping(uint256 => uint256) _mintPrices;
+  mapping(uint256 => uint256) _stakes;
 
   event MintLog(address indexed sender, uint256 id, uint256 amount);
   event AttmeptLog(address indexed sender, uint256 id, uint256 amount);
 
-  constructor() ERC721("DixiNFT", "DIXI") {}
+  constructor() ERC721("DixiNFT", "DIXI") {
+    _currentPrice = 0.01 ether;
+  }
 
   function transferOwnership(address owner) public override(Ownable) onlyOwner {
     transferOwnership(owner);
@@ -88,7 +92,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _mint(_minters[id], id);
     _setTokenURI(id, ipfsTokenUri);
     _attemptPrices[id] = prevPrice / 10;
-    emit MintLog(_minters[id], id, _currentPrice);
+    _mintPrices[id] = prevPrice;
+    emit MintLog(_minters[id], id, prevPrice);
     return id;
   }
 
@@ -102,10 +107,11 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _gameParticipation[id] = false;
   }
 
-  function tryGuess(uint256 id, string memory phrase) public payable returns (bool) {
+  function tryGuess(uint256 id, string memory phrase) public payable {
     require(msg.value >= _attemptPrices[id], "Not enough funds. Please, check current attempt size.");
-    uint256 delta = _attemptPrices[id] * 2;
+    uint256 delta = _mintPrices[id];
     _attemptPrices[id] += delta;
+    _stakes[id] += msg.value;
     emit AttmeptLog(msg.sender, id, msg.value);
   }
 
