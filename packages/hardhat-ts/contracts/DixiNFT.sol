@@ -16,7 +16,6 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   uint256 _currentPrice;
-
   mapping(uint256 => bytes32) public _inputHashes; // private
   mapping(uint256 => address) public _minters;
   mapping(uint256 => address) private _owners;
@@ -25,12 +24,16 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   mapping(uint256 => uint256) _attemptPrices;
   mapping(uint256 => uint256) _mintPrices;
   mapping(uint256 => uint256) _stakes;
+  uint256 _balance;
+  uint256 _stakeTotals;
 
   event MintLog(address indexed sender, uint256 id, uint256 amount);
   event AttmeptLog(address indexed sender, uint256 id, uint256 amount);
 
   constructor() ERC721("DixiNFT", "DIXI") {
     _currentPrice = 0.01 ether;
+    _balance = 0;
+    _stakeTotals = 0;
   }
 
   function transferOwnership(address owner) public override(Ownable) onlyOwner {
@@ -39,6 +42,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   function withdraw(uint256 amount) public payable onlyOwner {
     payable(owner()).transfer(amount);
+    _balance -= amount;
   }
 
   function _baseURI() internal view virtual override returns (string memory) {
@@ -81,6 +85,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _inputHashes[id] = inputHash;
     _minters[id] = to;
     _gameParticipation[id] = enterGame;
+    _balance += msg.value;
     return id;
   }
 
@@ -112,6 +117,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     uint256 delta = _mintPrices[id];
     _attemptPrices[id] += delta;
     _stakes[id] += msg.value;
+    _stakeTotals += msg.value;
+    _balance += msg.value;
     emit AttmeptLog(msg.sender, id, msg.value);
   }
 
