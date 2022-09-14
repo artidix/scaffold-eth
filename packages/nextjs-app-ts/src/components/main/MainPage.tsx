@@ -1,7 +1,7 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
 
 import { GenericContract } from 'eth-components/ant/generic-contract';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
+import { useBalance, useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
@@ -89,15 +89,15 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // -----------------------------
 
   // init contracts
-  const artiDix = useAppContracts('ArtiDix', ethersAppContext.chainId);
+  // const artiDix = useAppContracts('ArtiDix', ethersAppContext.chainId);
   const dixiNFT = useAppContracts('DixiNFT', ethersAppContext.chainId);
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
-  const [purpose, update] = useContractReader(artiDix, artiDix?.purpose, [], artiDix?.filters.SetPurpose());
+  // const [purpose, update] = useContractReader(artiDix, artiDix?.purpose, [], artiDix?.filters.SetPurpose());
 
   // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(artiDix, 'SetPurpose', 0);
+  // const [setPurposeEvents] = useEventListener(artiDix, 'SetPurpose', 0);
 
   // -----------------------------
   // .... 🎇 End of examples
@@ -120,11 +120,10 @@ export const MainPage: FC<IMainPageProps> = (props) => {
       name: 'ArtiDix',
       content: (
         <GenericContract
-          contractName="ArtiDix"
-          contract={artiDix}
+          contractName="DixiNFT"
+          contract={dixiNFT}
           mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}
-        />
+          blockExplorer={scaffoldAppProviders.targetNetwork.blockExplorer}></GenericContract>
       ),
     },
     pages: [

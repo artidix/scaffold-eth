@@ -26,11 +26,11 @@ export const getAppContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your hadrdhat contracts here
       // --------------------------------------------------
-      ArtiDix: createConnectorForHardhatContract(
-        'ArtiDix',
-        hardhatContracts.ArtiDix__factory,
-        hardhatDeployedContractsJson
-      ),
+      // ArtiDix: createConnectorForHardhatContract(
+      //   'ArtiDix',
+      //   hardhatContracts.ArtiDix__factory,
+      //   hardhatDeployedContractsJson
+      // ),
 
       DixiNFT: createConnectorForHardhatContract(
         'DixiNFT',
