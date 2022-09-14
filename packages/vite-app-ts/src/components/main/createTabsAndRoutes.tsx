@@ -47,7 +47,7 @@ export const createTabsAndRoutes = (
       }}
       selectedKeys={[route]}
       mode="horizontal">
-      <Menu.Item key="/">
+      {/* <Menu.Item key="/">
         <Link
           onClick={(): void => {
             setRoute('/');
@@ -55,7 +55,7 @@ export const createTabsAndRoutes = (
           to="/">
           {pageList.mainPage.name}
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       {pageList.pages.map(({ name }) => (
         <Menu.Item key={name}>
           <Link

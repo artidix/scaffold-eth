@@ -117,7 +117,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
   // This is the list of tabs and their contents
   const pageList: TContractPageList = {
     mainPage: {
-      name: 'ArtiDix',
+      name: 'DixiNFT',
       content: (
         <GenericContract
           contractName="DixiNFT"
