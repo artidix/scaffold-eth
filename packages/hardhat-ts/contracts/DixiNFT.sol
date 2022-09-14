@@ -84,7 +84,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _currentPrice = _currentPrice + _currentPrice / 1000; // 0.1% increase
     _mint(_minters[id], id);
     _setTokenURI(id, ipfsTokenUri);
-    _attemptPrices[id] = prevPrice / 5;
+    _attemptPrices[id] = prevPrice / 10;
     return id;
   }
 
@@ -100,7 +100,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   function tryGuess(uint256 id, string memory phrase) public payable returns (bool) {
     require(msg.value >= _attemptPrices[id], "Not enough funds. Please, check current attempt size.");
-
+    uint256 delta = _attemptPrices[id] * 2;
+    _attemptPrices[id] += delta;
     // @! register attempt
   }
 
