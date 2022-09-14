@@ -24,6 +24,9 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   mapping(uint256 => bool) public _gameParticipation;
   mapping(uint256 => uint256) _attemptPrices;
 
+  event MintLog(address indexed sender, uint256 id, uint256 amount);
+  event AttmeptLog(address indexed sender, uint256 id, uint256 amount);
+
   constructor() ERC721("DixiNFT", "DIXI") {}
 
   function transferOwnership(address owner) public override(Ownable) onlyOwner {
@@ -85,6 +88,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _mint(_minters[id], id);
     _setTokenURI(id, ipfsTokenUri);
     _attemptPrices[id] = prevPrice / 10;
+    emit MintLog(_minters[id], id, _currentPrice);
     return id;
   }
 
@@ -102,7 +106,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     require(msg.value >= _attemptPrices[id], "Not enough funds. Please, check current attempt size.");
     uint256 delta = _attemptPrices[id] * 2;
     _attemptPrices[id] += delta;
-    // @! register attempt
+    emit AttmeptLog(msg.sender, id, msg.value);
   }
 
   // @! on wrong guess, stake should transfer to NFT holder
