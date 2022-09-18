@@ -70,6 +70,10 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   }
 
   function currentMintPrice() public view returns (uint256) {
+    return 8;
+  }
+
+  function watafuq() public view returns (uint256) {
     return _currentPrice;
   }
 
