@@ -15,7 +15,7 @@ import "./lib/Verify.sol";
 contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
-  uint256 _currentPrice;
+  uint256 _currentPrice = 1 ether;
   mapping(uint256 => bytes32) public _inputHashes; // private
   mapping(uint256 => address) public _minters;
   mapping(uint256 => address) private _owners;
@@ -31,7 +31,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   event AttmeptLog(address indexed sender, uint256 id, uint256 amount);
 
   constructor() ERC721("DixiNFT", "DIXI") {
-    _currentPrice = 0.01 ether;
+    _currentPrice = 1 ether;
     _balance = 0;
     _stakeTotals = 0;
   }
@@ -69,7 +69,7 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return super.tokenURI(tokenId);
   }
 
-  function getCurrentPrice() public view returns (uint256) {
+  function currentMintPrice() public view returns (uint256) {
     return _currentPrice;
   }
 
