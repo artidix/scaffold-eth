@@ -77,17 +77,13 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return _currentPrice;
   }
 
-  function mintItem(
-    address to,
-    bytes32 inputHash,
-    bool enterGame
-  ) public payable returns (uint256) {
+  function mintItem(bytes32 inputHash, bool enterGame) public payable returns (uint256) {
     require(msg.value >= _currentPrice, "Please check current price, it's already higher!");
 
     _tokenIds.increment();
     uint256 id = _tokenIds.current();
     _inputHashes[id] = inputHash;
-    _minters[id] = to;
+    _minters[id] = msg.sender;
     _gameParticipation[id] = enterGame;
     _balance += msg.value;
     return id;
