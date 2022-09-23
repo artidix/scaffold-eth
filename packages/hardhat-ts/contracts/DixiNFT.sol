@@ -97,10 +97,10 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     // @! change onlyOwner to sig for daemon env
 
     uint256 prevPrice = _currentPrice;
-    _currentPrice = _currentPrice + _currentPrice / 1000; // 0.1% increase
+    _currentPrice = _currentPrice + _currentPrice / 200; // 0.05% increase
     _mint(_minters[id], id);
     _setTokenURI(id, ipfsTokenUri);
-    _attemptPrices[id] = prevPrice / 10;
+    _attemptPrices[id] = prevPrice / 10; // starting attempt price
     _mintPrices[id] = prevPrice;
     emit MintLog(_minters[id], id, prevPrice);
     return id;
