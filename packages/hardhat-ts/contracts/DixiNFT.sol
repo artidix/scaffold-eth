@@ -93,8 +93,8 @@ contract DixiNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     return id;
   }
 
-  function mintFinalize(uint256 id, string memory ipfsTokenUri) public onlyOwner returns (uint256) {
-    // @! change onlyOwner to sig for daemon env
+  function mintFinalize(uint256 id, string memory ipfsTokenUri) public returns (uint256) {
+    require(msg.sender == _minters[id] || msg.sender == owner(), "Only minting initializer can finalize it.");
 
     uint256 prevPrice = _currentPrice;
     _currentPrice = _currentPrice + _currentPrice / 200; // 0.05% increase
